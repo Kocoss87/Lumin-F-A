@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lumin Studio — Fotografía & Producción Audiovisual</title>
+<meta name="description" content="Estudio cinematográfico de fotografía y producción audiovisual."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0908; --bg-2:#11100e; --fg:#ece6da; --muted:#8a8377;
+    --gold:#F5B041; --gold-2:#d99425; --line:rgba(245,176,65,.18);
+    --shadow:0 30px 80px -20px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--fg);font-family:'Outfit',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(245,176,65,.08), transparent 60%),
+    radial-gradient(800px 500px at -10% 30%, rgba(245,176,65,.05), transparent 60%),
+    var(--bg);
+    min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+    opacity:.06;mix-blend-mode:overlay}
+  .display{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:.5px}
+  .gold{color:var(--gold)}
+  .gold-grad{background:linear-gradient(135deg,#f7c977,#F5B041 40%,#a06a14);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .container{max-width:1200px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  /* HEADER */
+  header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(10,9,8,.7);border-bottom:1px solid rgba(255,255,255,.06)}
+  header.site .row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+  .dot{width:8px;height:8px;border-radius:99px;background:var(--gold);box-shadow:0 0 14px var(--gold);animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.5}}
+  .brand-name{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:1px}
+  nav.main{display:flex;gap:4px;font-size:14px}
+  nav.main a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:2px;transition:color .2s;cursor:pointer}
+  nav.main a:hover,nav.main a.active{color:var(--gold)}
+  .visits{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .live{width:6px;height:6px;border-radius:99px;background:#34d399;animation:pulse 1.5s infinite}
+  @media(max-width:780px){nav.main{display:none}}
+
+  /* SECTIONS */
+  section.page{display:none;padding:80px 0 120px}
+  section.page.active{display:block;animation:fade .5s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  h1.hero{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,8vw,120px);line-height:.95;letter-spacing:-1px}
+  h1.hero em{font-style:italic}
+  h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);margin-bottom:24px}
+  p.lead{color:var(--muted);max-width:560px;margin-top:18px;font-size:17px}
+
+  /* HERO */
+  .hero-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;min-height:80vh}
+  @media(max-width:880px){.hero-wrap{grid-template-columns:1fr}}
+  .hero-img{position:relative;aspect-ratio:3/4;border-radius:2px;overflow:hidden;box-shadow:var(--shadow)}
+  .hero-img img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.9)}
+  .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,9,8,.6) 100%)}
+  .nav-buttons{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:48px}
+  @media(max-width:780px){.nav-buttons{grid-template-columns:repeat(2,1fr)}}
+  .nav-btn{padding:14px 18px;border:1px solid var(--line);background:transparent;color:var(--fg);font-family:inherit;font-size:13px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .3s;text-align:left}
+  .nav-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,176,65,.04)}
+  .ext-links{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap;font-size:13px}
+  .ext-links a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;transition:.2s}
+  .ext-links a:hover{color:var(--gold);border-color:var(--gold)}
+
+  /* GALLERY */
+  .masonry{column-count:3;column-gap:14px}
+  @media(max-width:880px){.masonry{column-count:2}}
+  @media(max-width:520px){.masonry{column-count:1}}
+  .masonry figure{break-inside:avoid;margin:0 0 14px;position:relative;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.04)}
+  .masonry img{width:100%;display:block;transition:transform .8s}
+  .masonry figure:hover img{transform:scale(1.06)}
+  .masonry figcaption{position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(transparent,rgba(10,9,8,.95));opacity:0;transition:.3s}
+  .masonry figure:hover figcaption{opacity:1}
+  .masonry figcaption .t{font-family:'Cormorant Garamond',serif;font-size:22px}
+  .masonry figcaption .c{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;background:rgba(10,9,8,.96);backdrop-filter:blur(20px);z-index:200;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:100%;max-height:90vh;box-shadow:var(--shadow)}
+  .lightbox .close{position:absolute;top:24px;right:24px;color:var(--gold);background:none;border:none;font-size:32px;cursor:pointer}
+
+  /* MEDIA */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:780px){.grid-2{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);background:rgba(255,255,255,.02);overflow:hidden}
+  .card .label{padding:14px 18px;font-size:13px;color:var(--muted)}
+  .ratio{position:relative;aspect-ratio:16/9}
+  .ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .stack{display:flex;flex-direction:column;gap:60px}
+
+  /* FORMS */
+  form{display:flex;flex-direction:column;gap:14px;max-width:540px}
+  input,textarea{background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--fg);font-family:inherit;font-size:15px;padding:12px 14px;border-radius:2px;outline:none;transition:.2s}
+  input:focus,textarea:focus{border-color:var(--gold);background:rgba(245,176,65,.04)}
+  textarea{min-height:120px;resize:vertical}
+  button.primary{background:var(--gold);color:#1a1408;border:none;padding:14px 22px;font-family:inherit;font-size:13px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:.2s;font-weight:500}
+  button.primary:hover{background:#fbc566}
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--bg-2);border:1px solid var(--gold);color:var(--gold);padding:14px 20px;font-size:14px;z-index:300;opacity:0;transform:translateY(20px);transition:.3s}
+  .toast.show{opacity:1;transform:none}
+
+  /* FORUM */
+  .post{border:1px solid var(--line);padding:20px;margin-bottom:14px;background:rgba(255,255,255,.02)}
+  .post h3{font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:6px}
+  .post .meta{font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+  .reply{border-left:2px solid var(--gold);padding:10px 14px;margin:10px 0 10px 20px;background:rgba(255,255,255,.015);font-size:14px}
+  .reply small{color:var(--muted);display:block;margin-top:4px;font-size:11px}
+  .reply-form{display:flex;gap:8px;margin-top:10px}
+  .reply-form input{flex:1}
+  .reply-form button{padding:8px 14px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:inherit;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
+  .reply-form button:hover{background:var(--gold);color:#1a1408}
+
+  /* CHAT */
+  .chat-box{border:1px solid var(--line);background:rgba(255,255,255,.02);height:480px;display:flex;flex-direction:column}
+  .chat-msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px}
+  .msg{padding:10px 14px;background:rgba(255,255,255,.04);border-left:2px solid var(--gold);max-width:75%;font-size:14px}
+  .msg .who{font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+  .chat-input{display:flex;gap:8px;padding:14px;border-top:1px solid var(--line)}
+  .chat-input input{flex:1}
+
+  footer{border-top:1px solid rgba(255,255,255,.06);margin-top:80px;padding:40px 0;color:var(--muted);font-size:14px}
+  footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container row">
+    <a class="brand" data-page="home"><span class="dot"></span><span class="brand-name">Lumin <span class="gold-grad">Studio</span></span></a>
+    <nav class="main" id="nav">
+      <a data-page="home" class="active">Inicio</a>
+      <a data-page="galeria">Galería</a>
+      <a data-page="medios">Medios</a>
+      <a data-page="foro">Foro</a>
+      <a data-page="chat">Chat</a>
+      <a data-page="contacto">Contacto</a>
+    </nav>
+    <div class="visits"><span class="live"></span><span id="visit-count">—</span> visitas</div>
+  </div>
+</header>
+
+<!-- HOME -->
+<section class="page active" id="page-home">
+  <div class="container hero-wrap">
+    <div>
+      <p class="eyebrow">— Estudio cinematográfico</p>
+      <h1 class="hero">Luz que <em class="gold-grad">cuenta</em><br/>historias.</h1>
+      <p class="lead">Fotografía y producción audiovisual con estética cinematográfica oscura. Capturamos atmósferas: del retrato íntimo al gran formato narrativo.</p>
+      <div class="ext-links">
+        <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo ↗</a>
+        <a href="https://www.behance.net" target="_blank" rel="noopener">Behance ↗</a>
+        <a href="https://www.imdb.com" target="_blank" rel="noopener">IMDb ↗</a>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn" data-page="galeria">01 · Galería</button>
+        <button class="nav-btn" data-page="medios">02 · Medios</button>
+        <button class="nav-btn" data-page="foro">03 · Foro</button>
+        <button class="nav-btn" data-page="chat">04 · Chat</button>
+        <button class="nav-btn" data-page="contacto">05 · Contacto</button>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80" alt="Cinematografía"/>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="page" id="page-galeria">
+  <div class="container">
+    <p class="eyebrow">— Galería</p>
+    <h1 class="hero" style="margin-bottom:14px">Archivo <em class="gold-grad">visual</em></h1>
+    <p class="lead" style="margin-bottom:50px">Una selección curada de nuestros trabajos recientes.</p>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- MEDIOS -->
+<section class="page" id="page-medios">
+  <div class="container stack">
+    <div>
+      <p class="eyebrow">— Medios</p>
+      <h1 class="hero" style="margin-bottom:14px">Sonido <em class="gold-grad">e imagen</em></h1>
+      <p class="lead">Reels, sesiones, motion design y la banda sonora que acompaña al estudio.</p>
+    </div>
+    <div>
+      <h2>Vídeos</h2>
+      <div class="grid-2">
+        <div class="card"><div class="ratio"><iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" allowfullscreen></iframe></div><div class="label">Reel 2024 — Producción audiovisual</div></div>
+        <div class="card"><div class="ratio"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe></div><div class="label">Detrás de cámaras — 'Ámbar'</div></div>
+      </div>
+    </div>
+    <div>
+      <h2>Banda sonora</h2>
+      <div class="card" style="padding:8px">
+        <iframe style="width:100%;border:0;border-radius:2px" height="380" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZd79rJ6a7lp?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div>
+      <h2>Motion</h2>
+      <div class="card" style="max-width:640px">
+        <img src="https://media.giphy.com/media/3oz8xQYqRRXz3l3zHy/giphy.gif" alt="Motion loop" style="width:100%;display:block"/>
+        <div class="label">Motion loop · Estudio Lumin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORO -->
+<section class="page" id="page-foro">
+  <div class="container">
+    <p class="eyebrow">— Foro</p>
+    <h1 class="hero" style="margin-bottom:14px">Conversación <em class="gold-grad">abierta</em></h1>
+    <p class="lead" style="margin-bottom:40px">Comparte ideas, pregunta y responde. (Demo local — los datos se guardan en este navegador).</p>
+    <form id="post-form" style="margin-bottom:30px">
+      <input id="post-author" placeholder="Tu nombre" required/>
+      <input id="post-title" placeholder="Título del tema" required/>
+      <textarea id="post-body" placeholder="¿Qué quieres compartir?" required></textarea>
+      <button class="primary" type="submit">Publicar</button>
+    </form>
+    <div id="posts"></div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section class="page" id="page-chat">
+  <div class="container">
+    <p class="eyebrow">— Chat en vivo</p>
+    <h1 class="hero" style="margin-bottom:14px">Sala <em class="gold-grad">abierta</em></h1>
+    <p class="lead" style="margin-bottom:40px">Mensajería en tiempo real entre las pestañas de este navegador.</p>
+    <div class="chat-box">
+      <div class="chat-msgs" id="chat-msgs"></div>
+      <form class="chat-input" id="chat-form">
+        <input id="chat-name" placeholder="Tu nombre" style="max-width:140px" required/>
+        <input id="chat-text" placeholder="Escribe un mensaje…" required/>
+        <button class="primary" type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="page" id="page-contacto">
+  <div class="container">
+    <p class="eyebrow">— Contacto</p>
+    <h1 class="hero" style="margin-bottom:14px">Hablemos del <em class="gold-grad">proyecto</em></h1>
+    <p class="lead" style="margin-bottom:40px">Cuéntanos qué tienes en mente. Respondemos en menos de 48h.</p>
+    <form id="contact-form">
+      <input id="c-name" placeholder="Nombre" required/>
+      <input id="c-email" type="email" placeholder="Email" required/>
+      <textarea id="c-msg" placeholder="Tu mensaje" required></textarea>
+      <button class="primary" type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container row">
+    <p class="display" style="font-size:18px">Lumin <span class="gold-grad">Studio</span> · Fotografía & Producción Audiovisual</p>
+    <p>© <span id="year"></span> — Hecho con luz y sombra.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><button class="close">×</button><img id="lb-img" alt=""/></div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ------- NAV -------
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('[data-page]');
+function go(p){
+  pages.forEach(s=>s.classList.toggle('active', s.id==='page-'+p));
+  document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active', a.dataset.page===p));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+navLinks.forEach(el=>el.addEventListener('click',e=>{e.preventDefault();go(el.dataset.page)}));
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// ------- VISITS (localStorage) -------
+const vKey='lumin_visits';
+let v=parseInt(localStorage.getItem(vKey)||'1247',10);
+if(!sessionStorage.getItem('lumin_v_logged')){v++;localStorage.setItem(vKey,v);sessionStorage.setItem('lumin_v_logged','1')}
+document.getElementById('visit-count').textContent=v.toLocaleString();
+setInterval(()=>{ // simulate live ticks
+  if(Math.random()<.3){v++;localStorage.setItem(vKey,v);document.getElementById('visit-count').textContent=v.toLocaleString()}
+},5000);
+
+// ------- GALLERY -------
+const photos=[
+  {src:'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&q=80',t:'Retrato I',c:'Estudio · 35mm'},
+  {src:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800&q=80',t:'Calle dorada',c:'Nocturno · Praga'},
+  {src:'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80',t:'Detrás de cámaras',c:'Set · 2024'},
+  {src:'https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?w=800&q=80',t:'Óptica',c:'Macro · Vintage'},
+  {src:'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&q=80',t:'Ocaso',c:'Sahara · 65mm'},
+  {src:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&q=80',t:'Inmersión',c:'Underwater · 4K'},
+  {src:'https://images.unsplash.com/photo-1493863641943-9b68992a8d07?w=800&q=80',t:'Niebla',c:'Bosque · 50mm'},
+  {src:'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&q=80',t:'Ciudad',c:'Tokio · Nocturno'},
+  {src:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',t:'Montaña',c:'Alpes · Drone'},
+];
+const m=document.getElementById('masonry');
+photos.forEach((p,i)=>{
+  const f=document.createElement('figure');
+  f.innerHTML=`<img src="${p.src}" loading="lazy" alt="${p.t}"/><figcaption><div class="t">${p.t}</div><div class="c">${p.c}</div></figcaption>`;
+  f.addEventListener('click',()=>openLB(p.src,p.t));
+  m.appendChild(f);
+});
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img');
+function openLB(s,a){lbImg.src=s;lbImg.alt=a;lb.classList.add('open')}
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+
+// ------- TOAST -------
+const toast=document.getElementById('toast');
+function notify(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500)}
+
+// ------- FORUM -------
+const fKey='lumin_forum';
+function getForum(){return JSON.parse(localStorage.getItem(fKey)||'[]')}
+function saveForum(d){localStorage.setItem(fKey,JSON.stringify(d))}
+function renderForum(){
+  const data=getForum();
+  const c=document.getElementById('posts');
+  if(!data.length){c.innerHTML='<p style="color:var(--muted)">Aún no hay temas. Sé el primero.</p>';return}
+  c.innerHTML=data.slice().reverse().map(p=>`
+    <div class="post">
+      <h3>${esc(p.title)}</h3>
+      <div class="meta">${esc(p.author)} · ${new Date(p.at).toLocaleString()}</div>
+      <p>${esc(p.body)}</p>
+      <div style="margin-top:14px">
+        ${(p.replies||[]).map(r=>`<div class="reply">${esc(r.body)}<small>— ${esc(r.author)} · ${new Date(r.at).toLocaleString()}</small></div>`).join('')}
+      </div>
+      <form class="reply-form" data-id="${p.id}">
+        <input placeholder="Tu nombre" name="a" required/>
+        <input placeholder="Responder…" name="b" required/>
+        <button>Responder</button>
+      </form>
+    </div>
+  `).join('');
+  c.querySelectorAll('.reply-form').forEach(f=>f.addEventListener('submit',e=>{
+    e.preventDefault();
+    const id=+f.dataset.id;const fd=new FormData(f);
+    const data=getForum();const post=data.find(x=>x.id===id);
+    post.replies=post.replies||[];
+    post.replies.push({author:fd.get('a'),body:fd.get('b'),at:Date.now()});
+    saveForum(data);renderForum();
+  }));
+}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+document.getElementById('post-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const data=getForum();
+  data.push({id:Date.now(),author:postAuthor.value,title:postTitle.value,body:postBody.value,at:Date.now(),replies:[]});
+  saveForum(data);e.target.reset();renderForum();notify('Publicado');
+});
+const postAuthor=document.getElementById('post-author'),postTitle=document.getElementById('post-title'),postBody=document.getElementById('post-body');
+renderForum();
+
+// ------- CHAT (BroadcastChannel + localStorage) -------
+const cKey='lumin_chat';
+const bc='BroadcastChannel' in window ? new BroadcastChannel('lumin-chat') : null;
+function getChat(){return JSON.parse(localStorage.getItem(cKey)||'[]')}
+function renderChat(){
+  const box=document.getElementById('chat-msgs');
+  const data=getChat().slice(-100);
+  box.innerHTML=data.map(m=>`<div class="msg"><div class="who">${esc(m.who)}</div>${esc(m.text)}</div>`).join('');
+  box.scrollTop=box.scrollHeight;
+}
+document.getElementById('chat-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const who=document.getElementById('chat-name').value;
+  const text=document.getElementById('chat-text').value;
+  const data=getChat();data.push({who,text,at:Date.now()});
+  localStorage.setItem(cKey,JSON.stringify(data));
+  bc&&bc.postMessage('upd');
+  document.getElementById('chat-text').value='';
+  renderChat();
+});
+bc&&(bc.onmessage=renderChat);
+window.addEventListener('storage',e=>{if(e.key===cKey)renderChat()});
+setInterval(renderChat,2500);
+renderChat();
+
+// ------- CONTACT -------
+document.getElementById('contact-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const all=JSON.parse(localStorage.getItem('lumin_contacts')||'[]');
+  all.push({name:cName.value,email:cEmail.value,msg:cMsg.value,at:Date.now()});
+  localStorage.setItem('lumin_contacts',JSON.stringify(all));
+  e.target.reset();notify('Mensaje enviado · gracias');
+});
+const cName=document.getElementById('c-name'),cEmail=document.getElementById('c-email'),cMsg=document.getElementById('c-msg');
+</script>
+</body>
+</html>
